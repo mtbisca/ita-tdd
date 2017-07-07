@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.regex.*;
 
 public class ConversorCamelCase {
-	List<String> listaResposta;
-	Pattern pattern;	
+	private List<String> listaResposta;
+	private Pattern pattern;	
 
 	public ConversorCamelCase() {
 		listaResposta = new ArrayList<String>();
