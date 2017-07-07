@@ -8,7 +8,7 @@ public class ConversorCamelCase {
 
 	public ConversorCamelCase() {
 		listaResposta = new ArrayList<String>();
-		Pattern pattern = Pattern.compile("([A-Z][a-z]+)|([a-z]+)|([A-Z]+(?![a-z]+))|([0-9]+)");
+		pattern = Pattern.compile("([A-Z][a-z]+)|([a-z]+)|([A-Z]+(?![a-z]+))|([0-9]+)");
 	}
 
 	public List<String> converterCamelCase(String string) {
