@@ -4,17 +4,18 @@ import java.util.regex.*;
 
 public class ConversorCamelCase {
 	List<String> listaResposta;
-	
-	public List<String> converterCamelCase(String string) {
+	Pattern pattern;	
+
+	public ConversorCamelCase() {
 		listaResposta = new ArrayList<String>();
+		Pattern pattern = Pattern.compile("([A-Z][a-z]+)|([a-z]+)|([A-Z]+(?![a-z]+))|([0-9]+)");
+	}
+
+	public List<String> converterCamelCase(String string) {
 		if(string.isEmpty()) {
 			listaResposta.add("");
-		} else if (comecaComNumero(string)) {
-			throw new CamelCaseInvalidoException("Nao pode comecar com numeros");
-		} else if (contemCaracteresEspeciais(string)) {
-			throw new CamelCaseInvalidoException("Nao pode conter caracteres especiais");
 		} else {	
-			Pattern pattern = Pattern.compile("([A-Z][a-z]+)|([a-z]+)|([A-Z]+(?![a-z]+))|([0-9]+)");
+			verificaValidadeString(string);
 			Matcher matcher = pattern.matcher(string);
 			while(matcher.find())
 				listaResposta.add(formataResposta(matcher.group(0)));
@@ -46,7 +47,12 @@ public class ConversorCamelCase {
 		Matcher matcher = pattern.matcher(string);
 		return matcher.find();
 	}
-}
 
-//(?=([A-Z]+))
-//([A-Z][a-z]+)|([a-z]+)|([A-Z]+)
+	private void verificaValidadeString(String string){
+		if (comecaComNumero(string)) {
+			throw new CamelCaseInvalidoException("Nao pode comecar com numeros");
+		} else if (contemCaracteresEspeciais(string)) {
+			throw new CamelCaseInvalidoException("Nao pode conter caracteres especiais");
+		}
+	}
+}
